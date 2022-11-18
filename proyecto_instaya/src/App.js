@@ -1,5 +1,5 @@
 import './bootstrap.css';
-
+import { Login } from './components/Login';
 import { LandingPage } from './components/landing-page';
 
 function App() {

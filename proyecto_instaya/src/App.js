@@ -1,5 +1,5 @@
-import {Routes, Route} from 'react-router-dom';
-import Orders from './components/Orders';
+
+import {Orders} from './components/Orders';
 
 function App() {
   return (

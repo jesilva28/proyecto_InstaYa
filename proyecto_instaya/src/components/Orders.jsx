@@ -1,7 +1,4 @@
-import React from 'react';
-import '../bootstrap.css';
-
-const Orders = () => {
+export function Orders() {
     return (
         <section>
             <header>
@@ -78,5 +75,3 @@ const Orders = () => {
    
     )
 }
-
-export default Orders;

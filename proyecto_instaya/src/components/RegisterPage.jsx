@@ -52,13 +52,13 @@ export function RegisterPage() {
                                 type="email" 
                                 className="form-control rounded col" 
                                 id="email" 
-                                placeholder="Ingrese su id." 
+                                placeholder="Ingrese su email." 
                                 name="email">
                             </input>
                         </div>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary mb-4 mt-4 rounded">Enviar</button>
+                <button type="submit" className="btn btn-primary mb-4 mt-4 rounded">Crear</button>
             </form>
         </div>
     </div>

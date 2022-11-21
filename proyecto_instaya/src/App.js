@@ -1,6 +1,6 @@
 import './bootstrap.css';
 import { Login } from './components/Login';
-import { LandingPage } from './components/landing-page';
+import { LandingPage } from './components/LandindPage';
 import {RegisterPage} from './components/RegisterPage';
 
 function App() {

@@ -16,7 +16,7 @@ export function RegisterPage() {
                                 type="text" 
                                 className="form-control rounded col" 
                                 id="nombre" 
-                                placeholder="Ingrese su nombre completo" 
+                                
                                 name="nombre">
                             </input>
                         </div>
@@ -28,7 +28,7 @@ export function RegisterPage() {
                                 type="text" 
                                 className="form-control rounded col" 
                                 id="username" 
-                                placeholder="Ingrese su id." 
+                                
                                 name="username">
                             </input>
                         </div>
@@ -40,7 +40,7 @@ export function RegisterPage() {
                                 type="password" 
                                 className="form-control rounded col" 
                                 id="pwd" 
-                                placeholder="Ingrese su contraseña" 
+                             
                                 name="pwd">
                             </input>
                         </div>
@@ -52,7 +52,7 @@ export function RegisterPage() {
                                 type="email" 
                                 className="form-control rounded col" 
                                 id="email" 
-                                placeholder="Ingrese su email." 
+                               
                                 name="email">
                             </input>
                         </div>

@@ -6,7 +6,7 @@ import {RegisterPage} from './components/RegisterPage';
 function App() {
   return (
     <div className="App">
-
+      <RegisterPage/>
     </div>
   );
 }

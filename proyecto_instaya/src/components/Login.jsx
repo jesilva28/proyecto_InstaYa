@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import box from '../static/box.png'
 
 export function Login() {
+
+    // useEffect(() => {
+    //     document.title = "Inicio de sesión";
+    // }, []);
     return (
         <div className="d-flex flex-column align-items-center">
             <h1 className="text-center mt-3 mb-5" style={{color: "white"}}>InstaYA - MENSAJERÍA</h1>

@@ -1,14 +1,13 @@
 import box from '../static/box.png'
-import { Create_order } from './Create_order'
 
-export function Update_order() {
+export function UpdateOrder() {
 
     return (
         <div className="d-flex flex-column align-items-center">
             <h1 className="text-center mt-5 mb-4" style={{ color: "white" }}>InstaYA - MENSAJERÍA </h1>
             <div className="d-flex flex-column align-items-center rounded w-50 shadow " style={{ backgroundColor: "white" }}>
 
-                <h3 className='py-4'> REGISTRO DE NUEVO USUARIO</h3>
+                <h3 className='py-4'> ACTUALIZAR ÓRDEN</h3>
 
                 <form className="d-flex flex-column  py-3">
 

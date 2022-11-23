@@ -1,23 +1,40 @@
+import { useState } from 'react'
 import box from '../static/box.png'
 
 export function RegisterPage() {
+
+    const [inputs, setInputs] = useState({});
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]:value}));
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(inputs);
+    }
+
     return (
         <div className="d-flex flex-column align-items-center">
         <h1 className="text-center mt-3 mb-5" style={{color: "white"}}>InstaYA - MENSAJERÍA</h1>
         <div className="d-flex flex-column align-items-center rounded shadow" style={{backgroundColor: "white"}}>
             <h3 className="py-5">REGISTRO DE NUEVO USUARIO</h3>
             <img src={box} alt="logo" style={{width:"15%"}}></img>
-            <form className="d-flex flex-column align-items-center w-100">
+            <form className="d-flex flex-column align-items-center" onSubmit={handleSubmit}>
                 <div>
                     <div className="my-4 row">
                         <label for="nombre" className="mt-1 form-label col">Nombres:</label>
                         <div>
                             <input 
-                                type="text" 
+                                type="text"
                                 className="form-control rounded col" 
                                 id="nombre" 
                                 placeholder="Ingrese su nombre completo" 
-                                name="nombre">
+                                name="fullName"
+                                value={inputs.fullName || ""}
+                                onChange={handleChange}>
                             </input>
                         </div>
                     </div>
@@ -29,7 +46,9 @@ export function RegisterPage() {
                                 className="form-control rounded col" 
                                 id="username" 
                                 placeholder="Ingrese su id." 
-                                name="username">
+                                name="username"
+                                value={inputs.username || ""}
+                                onChange={handleChange}>
                             </input>
                         </div>
                     </div>
@@ -41,7 +60,9 @@ export function RegisterPage() {
                                 className="form-control rounded col" 
                                 id="pwd" 
                                 placeholder="Ingrese su contraseña" 
-                                name="pwd">
+                                name="pwd"
+                                value={inputs.pwd || ""}
+                                onChange={handleChange}>
                             </input>
                         </div>
                     </div>
@@ -53,7 +74,9 @@ export function RegisterPage() {
                                 className="form-control rounded col" 
                                 id="email" 
                                 placeholder="Ingrese su id." 
-                                name="email">
+                                name="email"
+                                value={inputs.email || ""}
+                                onChange={handleChange}>
                             </input>
                         </div>
                     </div>

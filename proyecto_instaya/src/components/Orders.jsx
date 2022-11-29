@@ -1,4 +1,70 @@
-export function Orders() {
+import React, {useState, useEffect} from 'react';
+import { Link } from "react-router-dom";
+
+const Order = (props) => (
+    <tr>
+        <td>{props.order.fecha}</td>
+        <td>{props.order.ciudad_e}</td>
+        <td>{props.order.dir_e}</td>
+        <td>{props.order.estado}</td>
+        <td>
+            <Link className="btn btn-link" to={`../updateorder/${props.order._id}`}> {/* corregir */}
+                Editar
+            </Link>
+            <button className='btn btn-link'
+                onClick={() => {
+                    props.deleteOrder(props.order._id);
+                }}
+            >
+                Eliminar
+            </button>
+        </td>
+    </tr>
+);
+
+export default function OrderList() {
+    const [orders, setOrders] = useState([]);
+
+    useEffect (() => {
+        async function getOrders() {
+            const response = await fetch(`http://localhost:5000/api/orders/orders/`);
+
+            if (!response.ok) {
+                const message = `Un error ha ocurrido: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+
+            const orders = await response.json();
+            setOrders(orders);
+        }
+
+        getOrders();
+
+        return;
+    }, [orders.length]);
+
+    async function deleteOrder(id) {
+        await fetch(`http://localhost:5000/api/orders/${id}`, {
+            method: "DELETE"
+        });
+
+        const newOrders = orders.filter((el) => el._id !== id);
+        setOrders(newOrders);
+    }
+
+    function orderList() {
+        return orders.map((order) => {
+            return (
+                <Order
+                    order={order}
+                    deleteOrder={() => deleteOrder(order._id)}
+                    key={order._id}
+                />
+            );
+        });
+    }
+
     return (
         <section>
             <header>
@@ -32,35 +98,15 @@ export function Orders() {
                                     <table className='table'>
                                         <thead>
                                             <tr>
-                                                <th scope="col"># servicio</th>
                                                 <th scope="col">Fecha</th>
                                                 <th scope="col">Ciudad de entrega</th>
                                                 <th scope="col">Dirección de entrega</th>
                                                 <th scope="col">Estado</th>
+                                                <th scope="col">Editar/Eliminar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>08/08/2022</td>
-                                                <td>Medellín</td>
-                                                <td>Calle 50 # 49-50</td>
-                                                <td>Cumplido</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>02/05/2022</td>
-                                                <td>Cali</td>
-                                                <td>Cll 11 # 78-25</td>
-                                                <td>Cumplido</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>01/07/2022</td>
-                                                <td>Barranquilla</td>
-                                                <td>Cra 10 # 8-25</td>
-                                                <td>Pendiente</td>
-                                            </tr>
+                                            {orderList()}
                                         </tbody>
                                     </table>
                                 </div>

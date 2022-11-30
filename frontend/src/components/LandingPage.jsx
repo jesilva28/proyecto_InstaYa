@@ -16,16 +16,16 @@ export function LandingPage() {
                 <h1>InstaYa - Mensajería</h1>
             </div>
             <div>
-                <button 
+                <a href='/login'><button 
                     type="submit"
                     className="btn btn-primary btn-lg mx-2 rounded"
                     >Iniciar sesión
-                </button>
-                <button 
+                </button></a>
+                <a href="/register"><button 
                     type="submit" 
                     className="btn btn-primary btn-lg mx-2 rounded"
                     >Registro
-                </button>
+                </button></a>
             </div>
         </nav>
     )

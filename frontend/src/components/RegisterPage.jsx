@@ -11,9 +11,16 @@ export function RegisterPage() {
         setInputs(values => ({...values, [name]:value}));
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(inputs);
+        const response = await fetch('http://127.0.0.1:5000/register', {
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/json",
+            },
+            body: JSON.stringify(inputs),
+        });
     }
 
     return (

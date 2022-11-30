@@ -27,11 +27,11 @@ function App() {
         element= {<Orders />}
       />
       <Route
-        path='createorder'
+        path='create-order'
         element= {<CreateOrder />}
       />
       <Route
-        path='updateorder/:id'
+        path='update-order/:id'
         element= {<UpdateOrder />}
       />
     </Routes>

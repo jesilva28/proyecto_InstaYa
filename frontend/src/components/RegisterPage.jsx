@@ -53,15 +53,15 @@ export function RegisterPage() {
                         </div>
                     </div>
                     <div className="mb-4 row">
-                        <label for="pwd" className="mt-1 form-label col">Contraseña:</label>
+                        <label for="password" className="mt-1 form-label col">Contraseña:</label>
                         <div>
                             <input 
                                 type="password" 
                                 className="form-control rounded col" 
-                                id="pwd" 
+                                id="password" 
                                 placeholder="Ingrese su contraseña" 
-                                name="pwd"
-                                value={inputs.pwd || ""}
+                                name="password"
+                                value={inputs.password || ""}
                                 onChange={handleChange}>
                             </input>
                         </div>

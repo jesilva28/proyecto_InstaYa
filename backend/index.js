@@ -5,14 +5,18 @@ const app = express();
 const dbo = require("./db");
 const orders = require("./routes/orders");
 const logger = require("morgan");
+const cookieParser = require("cookie-parser");
+const authRoutes = require("./routes/authRoutes");
 
 dbo();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 app.use(logger());
 
 app.use("/api/orders", orders);
+app.use("/", authRoutes);
 
 const port = process.env.PORT || 5000;
 

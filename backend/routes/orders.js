@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Order, validator } = require("../models/order");
+const { Order, validator } = require("../models/orders");
 const validate = require("../middleware/validate");
 const isValidObjectId = require("../middleware/isValidObjectId");
 const asyncHandler = require("../middleware/asyncHandler");

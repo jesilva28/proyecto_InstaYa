@@ -1,7 +1,10 @@
-import { useState } from 'react'
-import box from '../static/box.png'
+import { useState } from 'react';
+import box from '../static/box.png';
+import { useNavigate } from 'react-router-dom';
 
 export function RegisterPage() {
+
+    const nav = useNavigate();
 
     const [inputs, setInputs] = useState({});
 
@@ -13,7 +16,6 @@ export function RegisterPage() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(inputs);
         const response = await fetch('http://127.0.0.1:5000/register', {
             method: "POST",
             headers: {
@@ -21,6 +23,9 @@ export function RegisterPage() {
             },
             body: JSON.stringify(inputs),
         });
+        if (response.ok) {
+            nav("/login");
+        }
     }
 
     return (

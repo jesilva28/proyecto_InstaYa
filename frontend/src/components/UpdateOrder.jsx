@@ -4,24 +4,16 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 
 export default function UpdateOrder() {
-    const [form, setForm] = useState({
-        fecha: "",
-        hora: "",
-        largo: "",
-        Ancho: "",
-        peso: "",
-        dir_r: "",
-        ciudad_r: "",
-        nombre_d: "",
-        cedula: "",
-        dir_e: "",
-        ciudad_e: "",
-        estado: "",
-        orders: []
-    });
+    const [form, setForm] = useState({});
 
     const params = useParams();
     const navigate = useNavigate();
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setForm(values => ({...values, [name]:value}));
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -46,33 +38,33 @@ export default function UpdateOrder() {
         return;
     }, [params.id, navigate]);
 
-    function updateForm(value) {
-        return setForm((prev) => {
-            return { ...prev, ...value};
-        });
-    }
+    // function updateForm(value) {
+    //     return setForm((prev) => {
+    //         return { ...prev, ...value};
+    //     });
+    // }
 
-    async function onSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        const editedOrder = {
-            fecha: form.fecha,
-            hora: form.hora,
-            largo: form.largo,
-            Ancho: form.Ancho,
-            peso: form.peso,
-            dir_r: form.dir_r,
-            ciudad_r: form.ciudad_r,
-            nombre_d: form.nombre_d,
-            cedula: form.cedula,
-            dir_e: form.dir_e,
-            ciudad_e: form.ciudad_e,
-        };
+        // const editedOrder = {
+        //     fecha: form.fecha,
+        //     hora: form.hora,
+        //     largo: form.largo,
+        //     ancho: form.ancho,
+        //     peso: form.peso,
+        //     dir_r: form.dir_r,
+        //     ciudad_r: form.ciudad_r,
+        //     nombre_d: form.nombre_d,
+        //     cedula: form.cedula,
+        //     dir_e: form.dir_e,
+        //     ciudad_e: form.ciudad_e,
+        // };
 
-        await fetch(`http://localhost:5000/api/orders/updateorder/${params.id}`, {
-            method: "POST",
-            body: JSON.stringify(editedOrder),
+        await fetch(`http://localhost:5000/api/orders/update-order/${params.id}`, {
+            method: "PUT",
+            body: JSON.stringify(form),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'Application/json'
             },
         });
 
@@ -86,7 +78,7 @@ export default function UpdateOrder() {
 
                 <h3 className='py-4'> ACTUALIZAR ORDEN</h3>
 
-                <form className="d-flex flex-column  py-3" onSubmit={onSubmit}>
+                <form className="d-flex flex-column  py-3" onSubmit={handleSubmit}>
 
                     <div>
 
@@ -105,8 +97,8 @@ export default function UpdateOrder() {
                                 required
                                 min="2022-01-00" 
                                 max="2022-12-31"  
-                                value={form.fecha}
-                                onChange={(e) => updateForm({fecha: e.target.value})}
+                                value={form.fecha || ""}
+                                onChange={handleChange}
                             />
 
                             <label htmlFor="hora" className="mt-4 px-3 "> Seleciona Hora:</label>
@@ -117,7 +109,7 @@ export default function UpdateOrder() {
                                 required
                                 step="3600" 
                                 value={form.hora}
-                                onChange={(e) => updateForm({hora: e.target.value})}
+                                onChange={handleChange}
                             />
 
                         </div>
@@ -134,20 +126,20 @@ export default function UpdateOrder() {
                                 maxLength="8" 
                                 size="4"
                                 value={form.largo}
-                                onChange={(e) => updateForm({largo: e.target.value})}
+                                onChange={handleChange}
                             />
 
-                            <label htmlFor="Ancho" className="mt-4 px-2 py-2 "> Ancho:</label>
+                            <label htmlFor="ancho" className="mt-4 px-2 py-2 "> Ancho:</label>
                             <input 
                                 type="text" 
-                                id="Ancho" 
-                                name="Ancho" 
+                                id="ancho" 
+                                name="ancho" 
                                 required
                                 minLength="1" 
                                 maxLength="8" 
                                 size="4"
-                                value={form.Ancho}
-                                onChange={(e) => updateForm({Ancho: e.target.value})}
+                                value={form.ancho}
+                                onChange={handleChange}
                             />
                             
                             <label htmlFor="peso" className="mt-4 px-2 py-2 "> Peso:</label>
@@ -160,7 +152,7 @@ export default function UpdateOrder() {
                                 maxLength="8" 
                                 size="4"
                                 value={form.peso}
-                                onChange={(e) => updateForm({peso: e.target.value})}
+                                onChange={handleChange}
                             />
 
 
@@ -181,55 +173,55 @@ export default function UpdateOrder() {
                         </div>
 
                         <div className="mb-2 px-0 row ">
-                            <label htmlFor="dir_r" className="mt-1  form-label col">Dirección Recogida:</label>
+                            <label htmlFor="dirRecogida" className="mt-1  form-label col">Dirección Recogida:</label>
                             <input
                                 type="text"
                                 className="form-control rounded col rounded w-5 shadow align-items-right"
-                                id="dir_r"
+                                id="dirRecogida"
                                 required
                                 placeholder="digite direccion recogida."
-                                name="dir_r"
-                                value={form.dir_r}
-                                onChange={(e) => updateForm({dir_r: e.target.value})}
+                                name="dirRecogida"
+                                value={form.dirRecogida}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="mb-2 row">
-                            <label htmlFor="ciudad_r" className="mt-1 form-label col">Ciudad Recogida:</label>
+                            <label htmlFor="ciudadRecogida" className="mt-1 form-label col">Ciudad Recogida:</label>
                             <input
                                 type="text"
                                 className="form-control rounded col rounded w-5 shadow align-items-right"
-                                id="ciudad_r"
+                                id="ciudadRecogida"
                                 required
                                 placeholder="digite ciudad recogida"
-                                name="ciudad_r"
-                                value={form.ciudad_r}
-                                onChange={(e) => updateForm({ciudad_r: e.target.value})}
+                                name="ciudadRecogida"
+                                value={form.ciudadRecogida}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="mb-2 px-0 row">
-                            <label htmlFor="nombre_d" className="mt-1  form-label col">Nombre Destinatario:</label>
+                            <label htmlFor="nombreDestinatario" className="mt-1  form-label col">Nombre Destinatario:</label>
                             <input
                                 type="text"
                                 className="form-control rounded col rounded w-5 shadow align-items-right"
-                                id="nombre_d"
+                                id="nombreDestinatario"
                                 required
                                 placeholder="digite nombre destinatario"
-                                name="nombre_d"
-                                value={form.nombre_d}
-                                onChange={(e) => updateForm({nombre_d: e.target.value})}
+                                name="nombreDestinatario"
+                                value={form.nombreDestinatario}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="mb-2 px-0 row">
-                            <label htmlFor="cedula" className="mt-1  form-label col">Cedula/Nit Destinatario:</label>
+                            <label htmlFor="cedulaDestinatario" className="mt-1  form-label col">Cedula/Nit Destinatario:</label>
                             <input
                                 type="text"
                                 className="form-control rounded col rounded w-5 shadow align-items-right"
-                                id="cedula"
+                                id="cedulaDestinatario"
                                 required
                                 placeholder="digite numero celuda/Nit"
-                                name="cedula"
-                                value={form.cedula}
-                                onChange={(e) => updateForm({cedula: e.target.value})}
+                                name="cedulaDestinatario"
+                                value={form.cedulaDestinatario}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="mb-2 px-0 row">
@@ -237,25 +229,25 @@ export default function UpdateOrder() {
                             <input
                                 type="text"
                                 className="form-control rounded col rounded w-5 shadow align-items-right"
-                                id="dir_e"
+                                id="dirEntrega"
                                 required
                                 placeholder="digite dirección entrega"
-                                name="dir_e"
-                                value={form.dir_e}
-                                onChange={(e) => updateForm({dir_e: e.target.value})}
+                                name="dirEntrega"
+                                value={form.dirEntrega}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="mb-2 px-0 row">
-                            <label htmlFor="ciudad_e" className="mt-1  form-label col">Ciudad Entrega:</label>
+                            <label htmlFor="ciudadEntrega" className="mt-1  form-label col">Ciudad Entrega:</label>
                             <input
                                 type="text"
                                 className="form-control rounded col rounded w-5 shadow align-items-right"
-                                id="ciudad_e"
+                                id="ciudadEntrega"
                                 required
                                 placeholder="digite ciudad entrega"
-                                name="ciudad_e"
-                                value={form.ciudad_e}
-                                onChange={(e) => updateForm({ciudad_e: e.target.value})}
+                                name="ciudadEntrega"
+                                value={form.ciudadEntrega}
+                                onChange={handleChange}
                             />
                         </div>
                         <br />

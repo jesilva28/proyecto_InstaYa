@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import box from '../static/box.png'
 
 export function Login() {
@@ -6,6 +7,7 @@ export function Login() {
     // useEffect(() => {
     //     document.title = "Inicio de sesión";
     // }, []);
+    const nav = useNavigate();
 
     const [inputs, setInputs] = useState({});
 
@@ -17,7 +19,6 @@ export function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(inputs);
         const response = await fetch('http://127.0.0.1:5000/login', {
             method: "POST",
             headers: {
@@ -25,6 +26,9 @@ export function Login() {
             },
             body: JSON.stringify(inputs),
         });
+        if (response.ok) {
+            nav("/orders");
+        }
     }
 
     return (

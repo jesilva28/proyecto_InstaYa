@@ -8,12 +8,30 @@ const asyncHandler = require("../middleware/asyncHandler");
 //C = create => Crear un cliente
 
 router.post(
-    "/createorder", 
+    "/create-order", 
     //"/", 
     validate(validator), 
     asyncHandler(async(req, res) => {
-        await Order(req.body).save();
-        res.status(200).send("Orden creada");
+        try{
+            const newOrder = new Order({
+                fecha: req.body.fecha,
+                hora: req.body.hora,
+                largo: req.body.largo,
+                ancho: req.body.ancho,
+                peso: req.body.peso,
+                dirRecogida: req.body.dirRecogida,
+                ciudadRecogida: req.body.ciudadRecogida,
+                nombreDestinatario: req.body.nombreDestinatario,
+                cedulaDestinatario: req.body.cedulaDestinatario,
+                dirEntrega: req.body.dirEntrega,
+                ciudadEntrega: req.body.ciudadEntrega
+            });
+            await newOrder.save();
+            res.status(200).send("Orden creada");
+        } catch(e) {
+            console.log(e.message);
+            return res.status(500).json(e.message);
+        }
     })
 );
 
@@ -41,7 +59,7 @@ router.get(
 
 //U = update =>
 router.put(
-    "/updateorder/:id", 
+    "/update-order/:id", 
     //"/:id", 
     isValidObjectId,
     asyncHandler(async(req, res) => {
@@ -55,8 +73,8 @@ router.delete(
     "/:id",
     isValidObjectId,
     asyncHandler(async (req, res) => {
-      await Order.findByIdAndDelete(req.params.id);
-      res.status(200).send("Eliminación exitosa");
+        await Order.findByIdAndDelete(req.params.id);
+        res.status(200).send("Eliminación exitosa");
     })
 );
 

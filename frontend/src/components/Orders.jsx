@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const Order = (props) => (
     <tr>
         <td>{props.order.fecha}</td>
-        <td>{props.order.ciudad_e}</td>
-        <td>{props.order.dir_e}</td>
+        <td>{props.order.ciudadEntrega}</td>
+        <td>{props.order.dirEntrega}</td>
         <td>{props.order.estado}</td>
         <td>
-            <Link className="btn btn-link" to={`../updateorder/${props.order._id}`}> {/* corregir */}
+            <Link className="btn btn-link" to={`../update-order/${props.order._id}`}> {/* corregir */}
                 Editar
             </Link>
             <button className='btn btn-link'
@@ -87,7 +87,7 @@ export default function OrderList() {
                                 <div className='row justify-content-end text-end'>
                                     <div className='col-3'>
                                         <div className='p-4'>
-                                            <a href="/createorder"><button className="btn-primary rounded">
+                                            <a href="/create-order"><button className="btn-primary rounded">
                                                 Crear Orden
                                             </button></a>
                                         </div>

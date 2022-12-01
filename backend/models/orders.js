@@ -3,7 +3,7 @@ const Joi = require("joi");
 
 const orderSchema = mongoose.Schema({
     fecha:{
-        type: Date,
+        type: String,
         required: true
     },
     hora:{
@@ -11,63 +11,63 @@ const orderSchema = mongoose.Schema({
         required: true
     },
     largo:{
-        type: Number,
+        type: String,
         required: true
     },
-    Ancho:{
-        type: Number,
+    ancho:{
+        type: String,
         required: true
     },
     peso:{
-        type: Number,
-        required: true
-    },
-    dir_r:{
         type: String,
         required: true
     },
-    ciudad_r:{
+    dirRecogida:{
         type: String,
         required: true
     },
-    nombre_d:{
+    ciudadRecogida:{
         type: String,
         required: true
     },
-    cedula:{
+    nombreDestinatario:{
         type: String,
         required: true
     },
-    dir_e:{
+    cedulaDestinatario:{
         type: String,
         required: true
     },
-    ciudad_e:{
+    dirEntrega:{
         type: String,
         required: true
     },
-    estado:{
+    ciudadEntrega:{
         type: String,
         required: true
     },
+    // estado:{
+    //     type: String,
+    //     required: true
+    // },
 });
 
 const Order = mongoose.model("order", orderSchema);
 
 const validator = (data) => {
     const schema = Joi.object({
-        fecha: Joi.date().required(),
+        fecha: Joi.string().required(),
         hora: Joi.string().required(),
-        largo: Joi.number().required(),
-        Ancho: Joi.number().required(),
-        peso: Joi.number().required(),
-        dir_r: Joi.string().required(),
-        ciudad_r: Joi.string().required(),
-        nombre_d: Joi.string().required(),
-        cedula: Joi.string().required(),
-        dir_e: Joi.string().required(),
-        ciudad_e: Joi.string().required(),
-        estado: Joi.string().required()
+        largo: Joi.string().required(),
+        ancho: Joi.string().required(),
+        peso: Joi.string().required(),
+        dirRecogida: Joi.string().required(),
+        ciudadRecogida: Joi.string().required(),
+        nombreDestinatario: Joi.string().required(),
+        cedulaDestinatario: Joi.string().required(),
+        dirEntrega: Joi.string().required(),
+        ciudadEntrega: Joi.string().required(),
+        // estado: Joi.string().required()
     })
     return schema.validate(data)
 };

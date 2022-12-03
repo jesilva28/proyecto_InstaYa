@@ -7,6 +7,7 @@ const orders = require("./routes/orders");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authRoutes");
+const checkAuth = require("./middleware/checkAuth");
 
 dbo();
 

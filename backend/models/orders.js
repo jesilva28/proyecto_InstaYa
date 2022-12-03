@@ -46,10 +46,11 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    // estado:{
-    //     type: String,
-    //     required: true
-    // },
+    estado:{
+        type: String,
+        required: true,
+        default: "Guardado"
+    },
 });
 
 const Order = mongoose.model("order", orderSchema);

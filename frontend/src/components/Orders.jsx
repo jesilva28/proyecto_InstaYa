@@ -8,10 +8,10 @@ const Order = (props) => (
         <td>{props.order.dirEntrega}</td>
         <td>{props.order.estado}</td>
         <td>
-            <Link className="btn btn-link" to={`../update-order/${props.order._id}`}> {/* corregir */}
+            <Link className="btn btn-link fw-semibold" to={`../update-order/${props.order._id}`}> {/* corregir */}
                 Editar
             </Link>
-            <button className='btn btn-link'
+            <button className='btn btn-link fw-semibold'
                 onClick={() => {
                     props.deleteOrder(props.order._id);
                 }}
@@ -83,11 +83,18 @@ export default function OrderList() {
                                         <h3>ÓRDENES</h3>
                                     </div>
                                 </div>
+                                <div className='row justify-content-end text-end'>
+                                    <a href="/">
+                                        <button className="btn btn-primary rounded">
+                                            Cerrar sesión
+                                        </button>
+                                    </a>
+                                </div>
 
                                 <div className='row justify-content-end text-end'>
                                     <div className='col-3'>
                                         <div className='p-4'>
-                                            <a href="/create-order"><button className="btn-primary rounded">
+                                            <a href="/create-order"><button className="btn btn-primary rounded">
                                                 Crear Orden
                                             </button></a>
                                         </div>
@@ -110,14 +117,11 @@ export default function OrderList() {
                                         </tbody>
                                     </table>
                                 </div>
-                                        
                             </div>       
                         </div>            
                     </div>
                 </div>  
             </div>
         </section>
-
-   
     )
 }

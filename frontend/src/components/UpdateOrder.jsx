@@ -67,6 +67,7 @@ export default function UpdateOrder() {
                 'Content-Type': 'Application/json'
             },
         });
+        console.log(form);
 
         navigate("/orders");
     }
@@ -108,7 +109,7 @@ export default function UpdateOrder() {
                                 id="hora"
                                 required
                                 step="3600" 
-                                value={form.hora}
+                                value={form.hora || ""}
                                 onChange={handleChange}
                             />
 
@@ -154,20 +155,17 @@ export default function UpdateOrder() {
                                 value={form.peso}
                                 onChange={handleChange}
                             />
-
-
                         </div>
                         <br />
 
                         <div className="mb-3 px-5 align-items-center row ">
                             <label htmlFor="estado" className="mt-1 px-5 ">Estado:</label>
                             <div className="mb-2 px-1 py-1 align-items-center row ">
-                                <select>
-                                    <option>Seleccione una opción </option>
-                                    <option>Guardado</option>
-                                    <option>Cancelado</option>
-                                    <option>Cumplido</option>
-
+                                <select name='estado' value={form.estado} onChange={handleChange}>
+                                    <option selected value={"Seleccione una opción"}>Seleccione una opción</option>
+                                    <option value={"Guardado"}>Guardado</option>
+                                    <option value={"Cancelado"}>Cancelado</option>
+                                    <option value={"Cumplido"}>Cumplido</option>
                                 </select>
                             </div>
                         </div>

@@ -199,7 +199,7 @@ export default function CreateOrder() {
                     <br />
                     <div className="mb-3 px-5 align-items-center row ">
                         <input 
-                            className="btn btn-primary  align-items-center row" 
+                            className="btn btn-primary rounded align-items-center row" 
                             type="submit"
                             value= "Crear orden"
                         />

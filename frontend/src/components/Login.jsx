@@ -10,6 +10,7 @@ export function Login() {
     const nav = useNavigate();
 
     const [inputs, setInputs] = useState({});
+    const [message, setMessage] =  useState({});
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -29,6 +30,10 @@ export function Login() {
         if (response.ok) {
             nav("/orders");
         }
+        if (!response.ok) {
+            const content = await response.json();
+            setMessage(content);
+        }
     }
 
     return (
@@ -37,6 +42,9 @@ export function Login() {
             <div className="d-flex flex-column align-items-center rounded w-50 shadow" style={{backgroundColor: "white"}}>
                 <h3 className="py-5">INICIO DE SESIÓN</h3>
                 <img src={box} alt="logo" style={{width:"15%"}}></img>
+                { message.message ? (
+                    <p className='text-danger'>{message.message}</p>
+                ):(<p></p>)}
                 <form className="d-flex flex-column align-items-center" onSubmit={handleSubmit}>
                     <div>
                         <div className="my-4 row">

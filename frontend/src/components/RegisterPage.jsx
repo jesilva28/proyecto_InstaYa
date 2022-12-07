@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import box from '../static/box.png';
 import { useNavigate } from 'react-router-dom';
 
 export function RegisterPage() {
 
     const nav = useNavigate();
-
     const [inputs, setInputs] = useState({});
+
+    useEffect(() => {
+        document.title = "Registro de usuario";
+    }, []);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -25,6 +28,7 @@ export function RegisterPage() {
         });
         if (response.ok) {
             nav("/login");
+            alert("Usuario creado exitosamente")
         }
     }
 
@@ -40,6 +44,7 @@ export function RegisterPage() {
                         <label for="nombre" className="mt-1 form-label col">Nombres:</label>
                         <div>
                             <input 
+                                required
                                 type="text"
                                 className="form-control rounded col" 
                                 id="nombre" 
@@ -53,7 +58,8 @@ export function RegisterPage() {
                     <div className="my-4 row">
                         <label for="username" className="mt-1 form-label col">Usuario:</label>
                         <div>
-                            <input 
+                            <input
+                                required
                                 type="text" 
                                 className="form-control rounded col" 
                                 id="username" 
@@ -67,7 +73,8 @@ export function RegisterPage() {
                     <div className="mb-4 row">
                         <label for="password" className="mt-1 form-label col">Contraseña:</label>
                         <div>
-                            <input 
+                            <input
+                                required
                                 type="password" 
                                 className="form-control rounded col" 
                                 id="password" 
@@ -81,7 +88,8 @@ export function RegisterPage() {
                     <div className="my-4 row">
                         <label for="email" className="mt-1 form-label col">Correo:</label>
                         <div>
-                            <input 
+                            <input
+                                required
                                 type="email" 
                                 className="form-control rounded col" 
                                 id="email" 

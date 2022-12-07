@@ -16,6 +16,9 @@ export default function UpdateOrder() {
     }
 
     useEffect(() => {
+
+        document.title = "Editar orden"
+        
         async function fetchData() {
             const id = params.id.toString();
             const response = await fetch(`http://localhost:5000/api/orders/orders/${params.id.toString()}`);  

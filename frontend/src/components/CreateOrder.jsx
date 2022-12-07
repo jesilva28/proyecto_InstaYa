@@ -1,12 +1,15 @@
 import box from '../static/box.png';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 export default function CreateOrder() {
     const navigate = useNavigate();
-
     const [form, setForm] = useState({});
+
+    useEffect(() => {
+        document.title = "Crear orden";
+    }, []);
 
     const handleChange = (event) => {
         const name = event.target.name;

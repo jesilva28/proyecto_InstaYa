@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import box from '../static/box.png'
 
 export function Login() {
 
-    // useEffect(() => {
-    //     document.title = "Inicio de sesión";
-    // }, []);
+    useEffect(() => {
+        document.title = "Inicio de sesión";
+    }, []);
     const nav = useNavigate();
 
     const [inputs, setInputs] = useState({});
@@ -43,14 +43,15 @@ export function Login() {
                 <h3 className="py-5">INICIO DE SESIÓN</h3>
                 <img src={box} alt="logo" style={{width:"15%"}}></img>
                 { message.message ? (
-                    <p className='text-danger'>{message.message}</p>
+                    <p className='text-danger mt-4'>{message.message}</p>
                 ):(<p></p>)}
                 <form className="d-flex flex-column align-items-center" onSubmit={handleSubmit}>
                     <div>
-                        <div className="my-4 row">
-                            <label for="username" className="mt-1 form-label col">Usuario:</label>
+                        <div className="mb-4 row">
+                            <label htmlFor="username" className="mt-1 form-label col">Usuario:</label>
                             <div>
-                                <input 
+                                <input
+                                    required
                                     type="text" 
                                     className="form-control rounded col" 
                                     id="username" 
@@ -62,9 +63,10 @@ export function Login() {
                             </div>
                         </div>
                         <div className="mb-4 row">
-                            <label for="password" className="mt-1 form-label col">Contraseña:</label>
+                            <label htmlFor="password" className="mt-1 form-label col">Contraseña:</label>
                             <div>
-                                <input 
+                                <input
+                                    required
                                     type="password" 
                                     className="form-control rounded col" 
                                     id="password" 

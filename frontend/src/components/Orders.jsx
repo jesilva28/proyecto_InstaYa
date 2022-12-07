@@ -24,8 +24,16 @@ const Order = (props) => (
 
 export default function OrderList() {
     const [orders, setOrders] = useState([]);
+    // const [user, setUser] = useState();
 
     useEffect (() => {
+
+        document.title = "Listado de órdenes";
+
+        // const loggedUser = localStorage.getItem('user');
+        // console.log(loggedUser);
+        // setUser(loggedUser);
+
         async function getOrders() {
             const response = await fetch(`http://localhost:5000/api/orders/orders/`);
 

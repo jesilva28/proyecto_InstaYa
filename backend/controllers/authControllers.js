@@ -27,11 +27,11 @@ const login = async (req, res) => {
     try {
         const user = await User.findOne({username: req.body.username});
         if (!user) {
-            return res.status(404).json({message: "User not found"});
+            return res.status(404).json({message: "Usuario o contraseña incorrectos"});
         } else {
             const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
             if (!isPasswordCorrect) {
-                return res.status(400).json({message: "Wrong password"});
+                return res.status(400).json({message: "Usuario o contraseña incorrectos"});
             }
             const payload = {id: user._id};
             const token = jwt.sign(payload, process.env.JWT_KEY, {
@@ -41,7 +41,7 @@ const login = async (req, res) => {
             return res
                 .cookie("access token", token, {httpOnly: true})
                 .status(200)
-                .json({message: "Token y cookie generada"});
+                .json({message: "Token y cookie generada", user: user.fullName});
         }
     } catch(e) {
         return res.status(500).json({message: e.message});

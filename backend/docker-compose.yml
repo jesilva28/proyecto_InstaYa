@@ -1,0 +1,10 @@
+version: "3.7"
+
+services: 
+  api:
+    restart: unless-stopped
+    build: .
+    environment: 
+      - NODE_ENV=production
+    ports: 
+      - 4000:4000

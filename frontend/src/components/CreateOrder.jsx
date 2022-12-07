@@ -19,7 +19,7 @@ export default function CreateOrder() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        await fetch("proyectoinstayabackend-production.up.railway.app/api/orders/create-order", {  
+        await fetch("http://127.0.0.1:5000/api/orders/create-order", {  
             method: "POST",
             headers: {
                 "Content-Type": "Application/json", 

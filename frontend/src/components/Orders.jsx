@@ -35,7 +35,7 @@ export default function OrderList() {
         // setUser(loggedUser);
 
         async function getOrders() {
-            const response = await fetch(`proyectoinstayabackend-production.up.railway.app/api/orders/orders/`);
+            const response = await fetch(`http://127.0.0.1:5000/api/orders/orders/`);
 
             if (!response.ok) {
                 const message = `Un error ha ocurrido: ${response.statusText}`;
@@ -53,7 +53,7 @@ export default function OrderList() {
     }, [orders.length]);
 
     async function deleteOrder(id) {
-        await fetch(`proyectoinstayabackend-production.up.railway.app/api/orders/${id}`, {
+        await fetch(`http://127.0.0.1:5000/api/orders/${id}`, {
             method: "DELETE"
         });
 

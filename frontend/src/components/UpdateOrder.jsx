@@ -21,7 +21,7 @@ export default function UpdateOrder() {
         
         async function fetchData() {
             const id = params.id.toString();
-            const response = await fetch(`proyectoinstayabackend-production.up.railway.app/api/orders/orders/${params.id.toString()}`);  
+            const response = await fetch(`http://127.0.0.1:5000/api/orders/orders/${params.id.toString()}`);  
         
             if (!response.ok) {
                 const message = `Ha ocurrido un error: ${response.statusText}`;
@@ -63,7 +63,7 @@ export default function UpdateOrder() {
         //     ciudad_e: form.ciudad_e,
         // };
 
-        await fetch(`proyectoinstayabackend-production.up.railway.app/api/orders/update-order/${params.id}`, {
+        await fetch(`http://127.0.0.1:5000/api/orders/update-order/${params.id}`, {
             method: "PUT",
             body: JSON.stringify(form),
             headers: {

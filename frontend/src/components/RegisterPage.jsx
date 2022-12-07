@@ -19,7 +19,7 @@ export function RegisterPage() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch('proyectoinstayabackend-production.up.railway.app/register', {
+        const response = await fetch('http://127.0.0.1:5000/register', {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json",

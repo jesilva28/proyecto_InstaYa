@@ -1,6 +1,7 @@
-FROM node:lts-alpine
+FROM node:lts-alpine 
 WORKDIR /app
-COPY package.json .
+COPY ./backend .
+RUN npm ci 
 RUN npm install
-COPY . .
-CMD ["node", "index.js"]
+EXPOSE 5000
+CMD [ "node", "index.js" ]

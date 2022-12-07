@@ -1,10 +1,33 @@
-version: "3.7"
+version: "3.8"
 
-services: 
-  api:
-    restart: unless-stopped
-    build: .
-    environment: 
-      - NODE_ENV=production
-    ports: 
-      - 4000:4000
+services:
+  backend:
+    # image: proyecto_instaya_backend
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      DB_URI: ${DB_URI}
+      JWT_KEY: ${JWT_KEY}
+      # PORT: ${PORT}
+      # HOSTNAME: ${HOSTNAME}
+  frontend:
+    # image: proyecto_instaya_frontend
+    build:
+      context: .
+      dockerfile: frontend.Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    # allow interactive mode
+    # stdin_open: true
+    # tty: true
+    depends_on:
+      - backend
+# declare the volumes name that our app is using.
+volumes:
+  data

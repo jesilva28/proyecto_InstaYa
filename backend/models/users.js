@@ -18,7 +18,15 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    orders: [{
+        orderId: {
+            type: String
+        },
+        // date: {
+        //     default: Date.now
+        // }
+    }]
 });
 
 module.exports = model("User", userSchema);
